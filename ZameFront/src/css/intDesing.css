@@ -1,0 +1,371 @@
+/* Interaction Design */
+
+/* =========================================
+   LUXURY REDESIGN COMPONENTS (ADR 2026-02-01)
+   ========================================= */
+
+/* Typography */
+.font-luxury-title {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+}
+
+.text-gold-gradient {
+    background: linear-gradient(135deg, #c5a059 0%, #a68545 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* Luxury Button */
+.btn-luxury-primary,
+.single_add_to_cart_button.button {
+    background: #111;
+    color: #c5a059;
+    border: 1px solid #c5a059;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-luxury-primary:hover {
+    background: #c5a059;
+    color: #fff;
+    box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.4);
+    transform: translateY(-1px);
+}
+
+.dark .btn-luxury-primary {
+    background: #000;
+}
+
+.dark .btn-luxury-primary:hover {
+    background: #c5a059;
+}
+
+/* Quantity Selector - Minimalist */
+.quantity-luxury-wrapper,
+.quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    margin-right: 1rem;
+    height: 100%;
+}
+
+.dark .quantity-luxury-wrapper {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.quantity-luxury-btn {
+    width: 2.5rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.2s;
+}
+
+.quantity-luxury-btn:hover {
+    color: #c5a059;
+}
+
+.quantity-luxury-input,
+.quantity .qty {
+    width: 2rem;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #111;
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.dark .quantity-luxury-input {
+    color: #fff;
+}
+
+.quantity-luxury-input::-webkit-outer-spin-button,
+.quantity-luxury-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Gallery Frame Effect */
+.gallery-frame {
+    position: relative;
+    background: #fcfcfc;
+    border: 1px solid #f3f4f6;
+    padding: 2rem;
+}
+
+.dark .gallery-frame {
+    background: #111;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.gallery-frame::after {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    pointer-events: none;
+}
+
+.dark .gallery-frame::after {
+    border-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Glassmorphism */
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-morphism:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* Custom Attribute Swatch - Interaction */
+.custom-attribute-swatch {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-attribute-swatch:hover {
+    border-color: #c5a059;
+    color: #c5a059;
+    transform: translateY(-1px);
+}
+
+.custom-attribute-swatch.active {
+    background-color: #c5a059;
+    border-color: #c5a059;
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgba(197, 160, 89, 0.3);
+}
+
+.dark .custom-attribute-swatch.active {
+    color: #000;
+}
+
+.hover-luxury {
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-luxury:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* 
+ * Related Products Fix
+ * Overrides global .products grid settings.
+ * MOBILE FIRST approach with explicit breakpoints.
+ */
+
+/* ========================================
+   RELATED PRODUCTS GRID - ALL BREAKPOINTS
+   ======================================== */
+
+/* BASE STYLES (Mobile - all sizes) */
+ul.zame-related-grid.products,
+.zame-related-grid.products {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    float: none !important;
+    clear: both !important;
+    list-style: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Tablet: 768px+ */
+@media (min-width: 768px) {
+
+    ul.zame-related-grid.products,
+    .zame-related-grid.products {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+
+    ul.zame-related-grid.products,
+    .zame-related-grid.products {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 2rem !important;
+    }
+}
+
+/* Large Desktop: 1280px+ */
+@media (min-width: 1280px) {
+
+    ul.zame-related-grid.products,
+    .zame-related-grid.products {
+        gap: 2.5rem !important;
+    }
+}
+
+/* Kill any pseudo-element interference */
+ul.zame-related-grid.products::before,
+ul.zame-related-grid.products::after,
+.zame-related-grid.products::before,
+.zame-related-grid.products::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Product Items: Full grid cell, no floats - ALL SIZES */
+ul.zame-related-grid.products>li.product,
+.zame-related-grid.products>li.product,
+ul.zame-related-grid.products li.product,
+.zame-related-grid.products li.product {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    float: none !important;
+    clear: none !important;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    list-style: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Price layout fix */
+ul.zame-related-grid.products li.product .price,
+.zame-related-grid.products li.product .price {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+/* Image containers */
+ul.zame-related-grid.products li.product .aspect-\[1\/1\.1\],
+.zame-related-grid.products li.product .aspect-\[1\/1\.1\] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1.1 !important;
+    display: block !important;
+}
+
+ul.zame-related-grid.products li.product img,
+.zame-related-grid.products li.product img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Hide Native WC Messages (Handled by JS Bridge) */
+.woocommerce-message,
+.woocommerce-error,
+.woocommerce-info {
+    display: none !important;
+}
+
+/* Toast Notifications (Custom JS) */
+#zame-toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    pointer-events: none;
+}
+
+.zame-toast {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    padding: 16px 24px;
+    min-width: 300px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateX(120%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.zame-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.zame-toast.success {
+    border-left: 3px solid #059669;
+    /* emerald-600 */
+}
+
+.zame-toast.error {
+    border-left: 3px solid #EF4444;
+    /* red-500 */
+}
+
+.zame-toast.dark .zame-toast,
+.dark .zame-toast {
+    background: rgba(10, 10, 10, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #f3f4f6;
+}
+
+.zame-toast .toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.zame-toast.success .toast-icon {
+    background-color: rgba(5, 150, 105, 0.1);
+    color: #059669;
+}
+
+.zame-toast.error .toast-icon {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}

@@ -1,0 +1,10 @@
+/* CSS Override for WordPress Admin Bar */
+body.admin-bar nav.sticky {
+    top: 32px !important;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar nav.sticky {
+        top: 46px !important;
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Carrito | ZAME SCENT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#B8860B',
+            'accent-gold': '#C5A059',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 transition-colors duration-300 flex flex-col min-h-screen">
+  
+  <nav class="py-4 px-6 md:px-12 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900 sticky top-0 bg-white/90 dark:bg-zinc-950/95 backdrop-blur z-40">
+    <a href="index.html" class="text-xl md:text-2xl font-display font-bold tracking-widest text-zinc-900 dark:text-white">
+      ZAME <span class="italic font-light text-amber-500">SCENT</span>
+    </a>
+    <div class="flex items-center space-x-6 text-[11px] uppercase tracking-[0.2em] font-semibold">
+      <a href="index.html" class="hover:text-amber-600 transition">Inicio</a>
+      <a href="index.html#catalogo" class="hover:text-amber-600 transition">Fragancias</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-12">
+    <h1 class="font-display text-3xl md:text-5xl font-medium text-zinc-900 dark:text-white mb-2">Tu Carrito</h1>
+    <p class="text-xs uppercase tracking-widest text-zinc-400 mb-12" id="cart-page-count">0 items</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Items Container -->
+      <div class="lg:col-span-2 space-y-6" id="cart-page-items">
+        <!-- Loaded via API -->
+      </div>
+
+      <!-- Summary Sidebar -->
+      <div id="cart-page-summary" class="bg-zinc-50 dark:bg-zinc-900/50 p-8 rounded-lg border border-zinc-100 dark:border-zinc-800 shadow-sm h-fit">
+        <h3 class="font-display text-xl font-bold text-zinc-900 dark:text-white mb-6 uppercase tracking-wider">Resumen de Pedido</h3>
+        <div class="space-y-4 text-xs">
+          <div class="flex justify-between items-center py-2 border-b border-zinc-150 dark:border-zinc-800">
+            <span class="text-zinc-500 font-bold uppercase tracking-widest">Subtotal:</span>
+            <span id="cart-page-subtotal" class="font-mono font-bold text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+          <div class="flex justify-between items-center py-2 border-b border-zinc-150 dark:border-zinc-800">
+            <span class="text-zinc-500 font-bold uppercase tracking-widest">Envío:</span>
+            <span id="cart-page-shipping" class="font-mono font-bold text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+          <div class="flex justify-between items-center pt-4">
+            <span class="text-zinc-900 dark:text-white font-bold uppercase tracking-widest text-sm">Total Estimado:</span>
+            <span id="cart-page-total" class="text-lg font-bold font-mono text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+        </div>
+        <div class="mt-8 space-y-3">
+          <a href="checkout.html" class="block w-full py-4 text-center bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-widest rounded transition-all">Iniciar Pago Seguro</a>
+          <a href="index.html#catalogo" class="block w-full py-4 text-center border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-xs font-bold uppercase tracking-widest rounded transition-all">Continuar Comprando</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-zinc-950 text-zinc-400 py-12 border-t border-zinc-900 text-xs text-center uppercase tracking-widest">
+    &copy; 2026 ZAME SCENT. Todos los derechos reservados.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

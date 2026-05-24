@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra | ZAME SCENT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#B8860B',
+            'accent-gold': '#C5A059',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 transition-colors duration-300 flex flex-col min-h-screen">
+  
+  <nav class="py-4 px-6 md:px-12 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900 sticky top-0 bg-white/90 dark:bg-zinc-950/95 backdrop-blur z-40">
+    <a href="index.html" class="text-xl md:text-2xl font-display font-bold tracking-widest text-zinc-900 dark:text-white">
+      ZAME <span class="italic font-light text-amber-500">SCENT</span>
+    </a>
+    <div class="flex items-center space-x-6 text-[11px] uppercase tracking-[0.2em] font-semibold">
+      <a href="cart.html" class="hover:text-amber-600 transition">Volver al Carrito</a>
+    </div>
+  </nav>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-12">
+    <h1 class="font-display text-3xl md:text-5xl font-medium text-zinc-900 dark:text-white mb-2">Finalizar Pedido</h1>
+    <p class="text-xs uppercase tracking-widest text-zinc-400 mb-12">Completar la compra de forma segura</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <!-- Billing and Simulated Payment Form -->
+      <div class="lg:col-span-2 bg-zinc-50 dark:bg-zinc-900/40 p-8 border border-zinc-100 dark:border-zinc-800 rounded-lg shadow-sm">
+        <h3 class="font-display text-xl font-bold mb-6 text-zinc-900 dark:text-white uppercase tracking-wider">Detalles de Envío</h3>
+        <form id="checkout-billing-form" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="billing-name" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Nombre Completo</label>
+              <input type="text" id="billing-name" required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+            <div>
+              <label for="billing-city" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Ciudad</label>
+              <input type="text" id="billing-city" required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+          </div>
+          <div>
+            <label for="billing-address" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Dirección de Entrega</label>
+            <input type="text" id="billing-address" required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+          </div>
+
+          <h3 class="font-display text-xl font-bold pt-6 mb-6 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-850 uppercase tracking-wider">Detalles de Pago</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2">
+              <label for="card-number" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Número de Tarjeta</label>
+              <input type="text" id="card-number" required placeholder="4000 1234 5678 9010" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+            <div>
+              <label for="card-expiry" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Vencimiento</label>
+              <input type="text" id="card-expiry" required placeholder="MM/AA" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-zinc-100 dark:border-zinc-850 text-center">
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="material-icons-outlined text-zinc-400 text-xl">lock</span>
+              <span class="text-[9px] uppercase tracking-wider font-bold text-zinc-400">Pago Seguro</span>
+            </div>
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="material-icons-outlined text-zinc-400 text-xl">local_shipping</span>
+              <span class="text-[9px] uppercase tracking-wider font-bold text-zinc-400">Entrega Rápida</span>
+            </div>
+            <div class="flex flex-col items-center gap-1.5">
+              <span class="material-icons-outlined text-zinc-400 text-xl">verified</span>
+              <span class="text-[9px] uppercase tracking-wider font-bold text-zinc-400">Garantía ZAME</span>
+            </div>
+          </div>
+
+          <button type="submit" id="checkout-submit-btn" class="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-widest rounded transition-all">Procesar Pedido Seguro</button>
+        </form>
+      </div>
+
+      <!-- Checkout Summary Sidebar -->
+      <div class="bg-zinc-50 dark:bg-zinc-900/50 p-8 border border-zinc-100 dark:border-zinc-800 rounded-lg shadow-sm h-fit">
+        <h3 class="font-display text-xl font-bold text-zinc-900 dark:text-white mb-6 uppercase tracking-wider">Tu Pedido</h3>
+        
+        <!-- Item List -->
+        <div id="checkout-items-list" class="space-y-4 mb-6">
+          <!-- Populated via script -->
+        </div>
+
+        <div class="space-y-4 pt-6 border-t border-zinc-200 dark:border-zinc-800 text-xs">
+          <div class="flex justify-between items-center">
+            <span class="text-zinc-500 uppercase tracking-widest font-bold">Subtotal:</span>
+            <span id="checkout-subtotal" class="font-mono font-bold text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-zinc-500 uppercase tracking-widest font-bold">Envío:</span>
+            <span id="checkout-shipping" class="font-mono font-bold text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+          <div class="flex justify-between items-center pt-4 border-t border-zinc-150 dark:border-zinc-800">
+            <span class="text-zinc-900 dark:text-white font-bold uppercase tracking-widest text-xs">Total del Pedido:</span>
+            <span id="checkout-total" class="text-base font-bold font-mono text-zinc-900 dark:text-white">$0 COP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Checkout Success Modal -->
+  <div id="checkout-success-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-8 rounded-lg shadow-2xl relative z-10 w-full max-w-md text-center">
+      <div class="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+        <span class="material-icons-outlined text-4xl">check_circle</span>
+      </div>
+      <h2 class="font-display text-2xl font-bold text-zinc-900 dark:text-white mb-2">¡Pago Procesado Exitosamente!</h2>
+      <p class="text-zinc-500 text-xs leading-relaxed mb-6">Tu pedido ha sido creado y registrado de forma segura.</p>
+      
+      <div class="bg-zinc-50 dark:bg-zinc-950 p-4 rounded border border-zinc-100 dark:border-zinc-900 text-xs font-semibold space-y-2 text-left mb-8">
+        <div class="flex justify-between"><span class="text-zinc-400">ID de Pedido:</span><span id="success-order-id" class="text-zinc-900 dark:text-white font-mono">#0</span></div>
+        <div class="flex justify-between"><span class="text-zinc-400">Estado:</span><span class="text-green-500">APROBADO</span></div>
+        <div class="flex justify-between"><span class="text-zinc-400">Total Transacción:</span><span id="success-order-total" class="text-zinc-900 dark:text-white font-mono">$0 COP</span></div>
+      </div>
+      
+      <a href="index.html" class="block w-full py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-amber-600 hover:text-white dark:hover:bg-amber-600 dark:hover:text-white text-xs font-bold uppercase tracking-widest rounded transition-all">Regresar a Inicio</a>
+    </div>
+  </div>
+
+  <footer class="bg-zinc-950 text-zinc-400 py-12 border-t border-zinc-900 text-xs text-center uppercase tracking-widest">
+    &copy; 2026 ZAME SCENT. Todos los derechos reservados.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

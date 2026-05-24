@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar | ZAME SCENT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#B8860B',
+            'accent-gold': '#C5A059',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 min-h-screen flex flex-col justify-between">
+  
+  <header class="py-6 px-12 border-b border-zinc-100 dark:border-zinc-900 text-center">
+    <a href="index.html" class="text-2xl font-display font-bold tracking-widest text-zinc-900 dark:text-white">
+      ZAME <span class="italic font-light text-amber-500">SCENT</span>
+    </a>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 p-8 rounded-lg shadow-xl">
+      <h2 class="font-display text-2xl font-bold text-center text-zinc-900 dark:text-white mb-2">Ingreso Seguro</h2>
+      <p class="text-xs uppercase tracking-widest text-zinc-400 text-center mb-8">Accede a tus fragancias exclusivas</p>
+
+      <form id="login-form" class="space-y-6">
+        <div>
+          <label for="username" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Usuario</label>
+          <input type="text" id="username" required class="w-full px-4 py-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+        </div>
+        <div>
+          <label for="password" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Contraseña</label>
+          <input type="password" id="password" required class="w-full px-4 py-3 bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+        </div>
+        
+        <div id="error-message" class="hidden text-xs text-red-500 font-semibold text-center bg-red-500/10 py-3 rounded"></div>
+
+        <button type="submit" class="w-full py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-amber-600 hover:text-white dark:hover:bg-amber-600 dark:hover:text-white text-xs font-bold uppercase tracking-widest rounded transition-all">Ingresar Seguro</button>
+      </form>
+
+      <div class="mt-8 text-center text-xs text-zinc-400">
+        ¿No tienes cuenta? <a href="register.html" class="text-amber-600 dark:text-amber-500 font-bold hover:underline">Regístrate gratis</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-6 border-t border-zinc-100 dark:border-zinc-900 text-center text-[10px] text-zinc-400 uppercase tracking-widest">
+    &copy; 2026 ZAME SCENT. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('error-message');
+
+      errorDiv.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error al iniciar sesión');
+
+        localStorage.setItem('zame_token', data.token);
+        localStorage.setItem('zame_username', data.username);
+        window.location.href = 'index.html';
+      } catch (err) {
+        errorDiv.textContent = err.message;
+        errorDiv.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

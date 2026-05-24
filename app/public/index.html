@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAME SCENT | Alta Perfumería</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#B8860B',
+            'accent-gold': '#C5A059',
+            'background-light': '#FFFFFF',
+            'background-dark': '#121212',
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    if (localStorage.theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
+    
+    function toggleDarkMode() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+    }
+  </script>
+</head>
+<body class="bg-white dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 transition-colors duration-300 flex flex-col min-h-screen">
+  
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white py-2.5 overflow-hidden relative z-50">
+    <div class="max-w-7xl mx-auto px-4 text-center text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium">
+      Envíos Gratis a todo Colombia por compras superiores a $200.000 COP
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <nav class="py-4 px-6 md:px-12 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900 sticky top-0 bg-white/90 dark:bg-zinc-950/95 backdrop-blur z-40 transition-colors duration-300">
+    <div class="logo flex items-center gap-3">
+      <a href="index.html" class="text-xl md:text-2xl font-display font-bold tracking-widest text-zinc-900 dark:text-white">
+        ZAME <span class="italic font-light text-amber-600 dark:text-amber-500">SCENT</span>
+      </a>
+    </div>
+
+    <!-- Navigation links -->
+    <div class="hidden md:flex space-x-8 text-[11px] uppercase tracking-[0.2em] font-semibold">
+      <a href="index.html" class="hover:text-amber-600 transition">Inicio</a>
+      <a href="#catalogo" class="hover:text-amber-600 transition">Fragancias</a>
+      <a href="cart.html" class="hover:text-amber-600 transition">Mi Carrito</a>
+    </div>
+
+    <!-- User & Cart actions -->
+    <div class="flex items-center space-x-4">
+      <span id="user-indicator" class="hidden text-xs uppercase tracking-widest text-amber-600 font-bold">
+        Hola, <span id="username-display" class="text-zinc-900 dark:text-white">Usuario</span>
+      </span>
+      <a href="login.html" id="login-nav-btn" class="text-[11px] uppercase tracking-[0.2em] font-bold text-zinc-500 hover:text-amber-600 transition">Ingresar</a>
+      <button onclick="logout()" id="logout-nav-btn" class="hidden text-[11px] uppercase tracking-[0.2em] font-bold text-zinc-500 hover:text-red-500 transition">Salir</button>
+      
+      <button onclick="openCartDrawer()" class="relative group p-2 text-zinc-800 dark:text-white">
+        <span class="material-icons-outlined text-2xl">shopping_bag</span>
+        <span class="cart-count absolute top-0 right-0 bg-amber-600 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+
+      <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition">
+        <span class="material-icons-outlined text-lg">dark_mode</span>
+      </button>
+      
+      <button id="mobile-menu-trigger" class="md:hidden text-zinc-900 dark:text-white focus:outline-none">
+        <span class="material-icons-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    
+    <!-- Premium Minimalist Hero Section -->
+    <section class="relative h-[80vh] w-full bg-zinc-950 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <!-- Background Image Fallback to sleek modern Perfume Image -->
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=1920" 
+             alt="Luxury Perfume" 
+             class="w-full h-full object-cover opacity-80 dark:opacity-60 animate-ken-burns" />
+        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
+      </div>
+      
+      <div class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
+        <div class="max-w-4xl space-y-6">
+          <h1 class="text-5xl md:text-8xl font-display font-medium text-white drop-shadow-2xl mb-4 animate-revealUp tracking-tighter">
+            ZAME <span class="italic font-light text-amber-500">SCENT</span>
+          </h1>
+          <p class="text-white/80 text-xs md:text-sm tracking-[0.3em] uppercase font-light animate-revealUp drop-shadow-md max-w-2xl mx-auto leading-relaxed">
+            Inspiraciones maestras de la alta perfumería mundial
+          </p>
+          <div class="pt-8">
+            <a href="#catalogo" class="glass-morphism px-12 py-5 text-white font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-700 shadow-2xl rounded-sm text-[10px] md:text-xs">
+              Explorar Colección
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Luxury Features Section -->
+    <section class="border-b border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950 py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+          <div class="flex flex-col items-center group">
+            <span class="material-icons-outlined text-amber-600 dark:text-amber-500 text-3xl mb-4">auto_awesome</span>
+            <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-1">95% Similitud</h3>
+            <p class="text-[10px] uppercase tracking-widest text-zinc-400">Perfumería de alta gama</p>
+          </div>
+          <div class="flex flex-col items-center group">
+            <span class="material-icons-outlined text-amber-600 dark:text-amber-500 text-3xl mb-4">schedule</span>
+            <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-1">10h+ Duración</h3>
+            <p class="text-[10px] uppercase tracking-widest text-zinc-400">Fijación extrema</p>
+          </div>
+          <div class="flex flex-col items-center group">
+            <span class="material-icons-outlined text-amber-600 dark:text-amber-500 text-3xl mb-4">local_shipping</span>
+            <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-1">Envíos Rápidos</h3>
+            <p class="text-[10px] uppercase tracking-widest text-zinc-400">Garantizados a todo el país</p>
+          </div>
+          <div class="flex flex-col items-center group">
+            <span class="material-icons-outlined text-amber-600 dark:text-amber-500 text-3xl mb-4">thumb_up_off_alt</span>
+            <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-1">Garantía Premium</h3>
+            <p class="text-[10px] uppercase tracking-widest text-zinc-400">Satisfacción asegurada</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Section with Filters -->
+    <section id="catalogo" class="py-24 px-6 bg-zinc-50 dark:bg-zinc-950 transition-colors">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-5xl font-display font-medium text-zinc-900 dark:text-white mb-4">Colección de Fragancias</h2>
+          <div class="w-24 h-1 bg-amber-600 mx-auto opacity-50 mb-6"></div>
+          
+          <!-- Category Filters -->
+          <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+            <button onclick="filterByCategory('Todos')" class="category-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-black text-white dark:bg-white dark:text-black transition" data-category="Todos">Todos</button>
+            <button onclick="filterByCategory('Ambarado')" class="category-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 transition" data-category="Ambarado">Ambarado</button>
+            <button onclick="filterByCategory('Amaderado')" class="category-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 transition" data-category="Amaderado">Amaderado</button>
+            <button onclick="filterByCategory('Chypre')" class="category-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 transition" data-category="Chypre">Chypre</button>
+            <button onclick="filterByCategory('Gourmand')" class="category-filter-btn px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-zinc-100 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-200 transition" data-category="Gourmand">Gourmand</button>
+          </div>
+        </div>
+
+        <!-- Catalog Products Grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Dynamically populated via API -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 px-6 bg-white dark:bg-zinc-950 overflow-hidden border-t border-zinc-100 dark:border-zinc-900">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-display font-medium text-zinc-900 dark:text-white mb-4">Lo que dicen nuestros clientes</h2>
+          <div class="w-24 h-1 bg-amber-600 mx-auto opacity-50"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-xl transition duration-500 flex flex-col justify-between">
+            <blockquote class="text-zinc-600 dark:text-zinc-300 italic mb-8 relative">
+              "La fijación es increíble. Compré la inspiración de Baccarat Rouge y me dura todo el día. Definitivamente el mejor lujo asequible que he encontrado."
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-amber-600/20 text-amber-600 font-bold rounded-full flex items-center justify-center text-sm">VP</div>
+              <div>
+                <p class="font-bold text-xs uppercase tracking-widest">Valentina P.</p>
+                <p class="text-[10px] text-zinc-400">Cliente Verificado</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-xl transition duration-500 flex flex-col justify-between">
+            <blockquote class="text-zinc-600 dark:text-zinc-300 italic mb-8 relative">
+              "Como amante de los perfumes, era escéptico. Pero ZAME me sorprendió. El empaque es hermoso y el aroma es idéntico al original. Recomendado."
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-amber-600/20 text-amber-600 font-bold rounded-full flex items-center justify-center text-sm">CR</div>
+              <div>
+                <p class="font-bold text-xs uppercase tracking-widest">Carlos R.</p>
+                <p class="text-[10px] text-zinc-400">Cliente Verificado</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-zinc-50 dark:bg-zinc-900 p-8 rounded-xl border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-xl transition duration-500 flex flex-col justify-between">
+            <blockquote class="text-zinc-600 dark:text-zinc-300 italic mb-8 relative">
+              "Excelente servicio al cliente y el envío fue súper rápido. Mi perfume llegó en perfectas condiciones y huele de maravilla. ¡Proyecta muchísimo!"
+            </blockquote>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-amber-600/20 text-amber-600 font-bold rounded-full flex items-center justify-center text-sm">MA</div>
+              <div>
+                <p class="font-bold text-xs uppercase tracking-widest">Mariana A.</p>
+                <p class="text-[10px] text-zinc-400">Cliente Verificado</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Side Cart Drawer -->
+  <div id="side-cart-drawer" class="fixed inset-0 z-50 transition-all duration-300" style="display: none;">
+    <div id="cart-overlay" onclick="closeCartDrawer()" class="absolute inset-0 bg-black/55 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <div id="cart-panel" class="absolute top-0 right-0 w-full max-w-md h-full bg-white dark:bg-zinc-900 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="p-6 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-800">
+        <span class="font-display font-bold tracking-widest text-zinc-900 dark:text-white uppercase">Carrito de Compras</span>
+        <button onclick="closeCartDrawer()" class="text-zinc-400 hover:text-black dark:hover:text-white transition"><span class="material-icons-outlined text-2xl">close</span></button>
+      </div>
+      
+      <!-- Mini Cart Items (Dynamic) -->
+      <div id="mini-cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Loaded dynamically -->
+      </div>
+      
+      <!-- Mini Cart Footer Actions -->
+      <div id="mini-cart-actions" class="p-6 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hidden">
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-xs uppercase tracking-widest font-bold text-zinc-500">Total:</span>
+          <span id="mini-cart-total" class="text-lg font-bold font-mono text-zinc-900 dark:text-white">$0 COP</span>
+        </div>
+        <div class="space-y-3">
+          <a href="cart.html" class="block w-full py-4 text-center border border-zinc-900 dark:border-zinc-100 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-900 hover:text-white dark:hover:bg-zinc-100 dark:hover:text-black text-xs font-bold uppercase tracking-widest transition rounded">Ver Carrito Completo</a>
+          <a href="checkout.html" class="block w-full py-4 text-center bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold uppercase tracking-widest transition rounded">Iniciar Pago Seguro</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div id="mobile-menu-drawer" class="fixed inset-0 z-50 transition-all duration-300" style="display: none;">
+    <div id="mobile-menu-overlay" class="absolute inset-0 bg-black/55 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+    <div id="mobile-menu-panel" class="absolute top-0 right-0 w-4/5 max-w-sm h-full bg-white dark:bg-zinc-900 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+      <div class="p-6 flex justify-between items-center border-b border-zinc-100 dark:border-zinc-800">
+        <span class="font-display font-bold tracking-widest text-zinc-900 dark:text-white">MENÚ</span>
+        <button id="mobile-menu-close" class="text-zinc-400 hover:text-black dark:hover:text-white transition"><span class="material-icons-outlined text-2xl">close</span></button>
+      </div>
+      <div class="flex-1 overflow-y-auto py-8 px-6">
+        <div class="flex flex-col space-y-6 text-sm uppercase tracking-widest font-semibold">
+          <a href="index.html" class="hover:text-amber-600 transition">Inicio</a>
+          <a href="#catalogo" class="hover:text-amber-600 transition">Fragancias</a>
+          <a href="cart.html" class="hover:text-amber-600 transition">Mi Carrito</a>
+        </div>
+      </div>
+      <div class="p-8 border-t border-zinc-100 dark:border-zinc-800">
+        <p class="text-center text-[10px] text-zinc-400 uppercase tracking-widest">&copy; 2026 ZAME SCENT. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-zinc-950 text-zinc-400 py-16 border-t border-zinc-900 text-xs mt-auto">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div>
+        <h3 class="font-display text-white text-lg font-bold tracking-widest mb-6">ZAME SCENT</h3>
+        <p class="leading-relaxed max-w-xs text-zinc-500">Representando el lujo y la durabilidad extrema. Nuestra colección evoca aromas legendarios con precisión magistral.</p>
+      </div>
+      <div>
+        <h4 class="text-white uppercase tracking-widest font-semibold mb-6">Soporte</h4>
+        <div class="flex flex-col space-y-3">
+          <span class="hover:text-white transition">Preguntas Frecuentes</span>
+          <span class="hover:text-white transition">Envíos y Devoluciones</span>
+          <span class="hover:text-white transition">Contacto de Soporte</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-white uppercase tracking-widest font-semibold mb-6">Contacto</h4>
+        <div class="flex flex-col space-y-3">
+          <span class="text-zinc-500">Bogotá, Colombia</span>
+          <span class="text-zinc-500">soporte@zame.com.co</span>
+          <span class="text-zinc-500">+57 (300) 123-4567</span>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 border-t border-zinc-900 mt-12 pt-8 text-center text-zinc-600 text-[10px] uppercase tracking-widest">
+      &copy; 2026 ZAME SCENT. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

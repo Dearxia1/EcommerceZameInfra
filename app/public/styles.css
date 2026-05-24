@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Material+Icons+Outlined&display=swap');
+
+/* Core custom styles and luxury gradients */
+:root {
+  --color-primary: #B8860B;
+  --color-accent: #C5A059;
+  --color-bg-dark: #121212;
+  --color-bg-light: #FFFFFF;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Luxury Glassmorphism */
+.glass-morphism {
+  background: rgba(18, 18, 18, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light .glass-morphism {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effects for premium feeling */
+.hover-luxury {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-luxury:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(184, 134, 11, 0.15);
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+/* Keyframes for premium Ken Burns and fade-in effects */
+@keyframes kenBurns {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.0); }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 25s infinite ease-in-out;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-revealUp {
+  animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

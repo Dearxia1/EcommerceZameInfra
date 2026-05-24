@@ -1,0 +1,6 @@
+/* HIDDEN FIX - Remove annoyingly sticky Gallery Trigger */
+.woocommerce-product-gallery__trigger {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

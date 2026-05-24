@@ -1,0 +1,127 @@
+@theme {
+    @keyframes ken-burns {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(1.15);
+        }
+    }
+
+    @keyframes revealUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes revealRight {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+            filter: blur(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse-luxury {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+        }
+
+        70% {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+        }
+
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        }
+    }
+}
+
+
+/* Base Animations (Only trigger when .is-visible is added) */
+.animate-ken-burns {
+    animation: ken-burns 25s ease-out infinite alternate;
+}
+
+.animate-pulse-luxury {
+    animation: pulse-luxury 2s infinite;
+}
+
+.scroll-reveal {
+    opacity: 0;
+}
+
+.animate-revealUp {
+    animation: none;
+    opacity: 0;
+}
+
+.animate-revealUp.is-visible {
+    animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-revealRight.is-visible {
+    animation: revealRight 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fadeIn-subtle.is-visible {
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fadeIn-subtle {
+    /* If it doesn't have scroll-reveal, let it run immediately */
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+
+/* Staggering Delays */
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-400 {
+    animation-delay: 400ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
