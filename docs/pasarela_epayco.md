@@ -22,6 +22,16 @@ epayco_private_key = "TU_PRIVATE_KEY"
 `terraform.tfvars` esta ignorado por Git. Terraform inyecta esas variables en
 el `.env` de la EC2 durante el `user_data.sh`.
 
+Si ya tienes un `.env` local con las claves de ePayco, puedes generar el
+`terraform.tfvars` automaticamente:
+
+```powershell
+.\scripts\create_terraform_tfvars_from_env.ps1
+```
+
+Ese comando crea `terraform/terraform.tfvars` con las claves locales y deja el
+archivo fuera de Git.
+
 Tambien puedes usar variables de entorno sin crear archivo:
 
 ```bash

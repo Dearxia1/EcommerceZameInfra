@@ -1,4 +1,5 @@
-# Copy this file to terraform.tfvars for local deployment.
+# Copy this file to terraform.tfvars for local deployment, or run:
+#   powershell -File ../scripts/create_terraform_tfvars_from_env.ps1
 # terraform.tfvars is ignored by Git. Do not commit real secrets.
 
 aws_region = "us-east-1"
