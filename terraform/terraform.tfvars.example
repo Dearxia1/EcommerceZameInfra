@@ -1,0 +1,26 @@
+# Copy this file to terraform.tfvars for local deployment.
+# terraform.tfvars is ignored by Git. Do not commit real secrets.
+
+aws_region = "us-east-1"
+
+# RDS credentials
+db_name = "zame_db"
+db_user = "admin"
+db_pass = "CHANGE_ME"
+
+# Notifications
+alert_email = "infraalertas@zame.com.co"
+
+# ePayco test/development credentials
+epayco_mock                 = false
+epayco_test_mode            = true
+epayco_public_key           = "CHANGE_ME"
+epayco_private_key          = "CHANGE_ME"
+epayco_test_price_divisor   = 10
+epayco_test_max_amount      = 200000
+
+# If you already know the public ALB/domain, set these values.
+# Otherwise leave blank for local defaults; after deployment you can update
+# them with the ALB DNS if ePayco requires public callback URLs.
+epayco_response_url      = ""
+epayco_confirmation_url  = ""

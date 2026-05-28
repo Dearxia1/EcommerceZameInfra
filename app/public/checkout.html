@@ -59,16 +59,64 @@
             <input type="text" id="billing-address" required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
           </div>
 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="customer-email" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Correo Electronico</label>
+              <input type="email" id="customer-email" required placeholder="cliente@correo.com" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+            <div>
+              <label for="customer-phone" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Celular</label>
+              <input type="tel" id="customer-phone" required placeholder="3001234567" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label for="doc-type" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Tipo Doc.</label>
+              <select id="doc-type" required class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+                <option value="CC">CC</option>
+                <option value="CE">CE</option>
+                <option value="NIT">NIT</option>
+                <option value="PPN">Pasaporte</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label for="doc-number" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Numero de Documento</label>
+              <input type="text" id="doc-number" required placeholder="123456789" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+          </div>
+
           <h3 class="font-display text-xl font-bold pt-6 mb-6 text-zinc-900 dark:text-white border-t border-zinc-100 dark:border-zinc-850 uppercase tracking-wider">Detalles de Pago</h3>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="md:col-span-2">
               <label for="card-number" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Número de Tarjeta</label>
-              <input type="text" id="card-number" required placeholder="4000 1234 5678 9010" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+              <input type="text" id="card-number" required placeholder="4575 6231 8229 0326" inputmode="numeric" autocomplete="cc-number" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
             </div>
             <div>
               <label for="card-expiry" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Vencimiento</label>
-              <input type="text" id="card-expiry" required placeholder="MM/AA" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+              <input type="text" id="card-expiry" required placeholder="MM/AAAA" autocomplete="cc-exp" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label for="card-cvc" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">CVC</label>
+              <input type="password" id="card-cvc" required placeholder="123" inputmode="numeric" autocomplete="cc-csc" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+            </div>
+            <div>
+              <label for="card-dues" class="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-2">Cuotas</label>
+              <select id="card-dues" class="w-full px-4 py-3 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-sm rounded outline-none focus:border-amber-600 transition">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <div class="w-full px-4 py-3 bg-amber-600/10 border border-amber-600/30 rounded text-[10px] uppercase tracking-widest text-amber-600 dark:text-amber-500 font-bold text-center">
+                ePayco pruebas
+              </div>
             </div>
           </div>
 
@@ -131,6 +179,8 @@
       <div class="bg-zinc-50 dark:bg-zinc-950 p-4 rounded border border-zinc-100 dark:border-zinc-900 text-xs font-semibold space-y-2 text-left mb-8">
         <div class="flex justify-between"><span class="text-zinc-400">ID de Pedido:</span><span id="success-order-id" class="text-zinc-900 dark:text-white font-mono">#0</span></div>
         <div class="flex justify-between"><span class="text-zinc-400">Estado:</span><span class="text-green-500">APROBADO</span></div>
+        <div class="flex justify-between"><span class="text-zinc-400">Pasarela:</span><span id="success-payment-provider" class="text-zinc-900 dark:text-white font-mono">ePayco</span></div>
+        <div class="flex justify-between"><span class="text-zinc-400">Referencia:</span><span id="success-payment-reference" class="text-zinc-900 dark:text-white font-mono">-</span></div>
         <div class="flex justify-between"><span class="text-zinc-400">Total Transacción:</span><span id="success-order-total" class="text-zinc-900 dark:text-white font-mono">$0 COP</span></div>
       </div>
       

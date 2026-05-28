@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log*
+database.sqlite
+*.sqlite
+*.sqlite3
+*.db
+*.zip
+.env
+.env.local
+.env.production
+.env.development

@@ -408,11 +408,19 @@ resource "aws_launch_template" "web_lt" {
 
   # Render user_data provisioning variables
   user_data = base64encode(templatefile("user_data.sh", {
-    s3_bucket_name    = local.s3_bucket_name
-    rds_endpoint_host = split(":", aws_db_instance.rds_db.endpoint)[0]
-    rds_db_name       = var.db_name
-    rds_db_user       = var.db_user
-    rds_db_pass       = var.db_pass
+    s3_bucket_name            = local.s3_bucket_name
+    rds_endpoint_host         = split(":", aws_db_instance.rds_db.endpoint)[0]
+    rds_db_name               = var.db_name
+    rds_db_user               = var.db_user
+    rds_db_pass               = var.db_pass
+    epayco_mock               = var.epayco_mock
+    epayco_test_mode          = var.epayco_test_mode
+    epayco_public_key         = var.epayco_public_key
+    epayco_private_key        = var.epayco_private_key
+    epayco_test_price_divisor = var.epayco_test_price_divisor
+    epayco_test_max_amount    = var.epayco_test_max_amount
+    epayco_response_url       = var.epayco_response_url != "" ? var.epayco_response_url : "http://${aws_lb.app_alb.dns_name}/checkout.html"
+    epayco_confirmation_url   = var.epayco_confirmation_url != "" ? var.epayco_confirmation_url : "http://${aws_lb.app_alb.dns_name}/api/payments/epayco/confirmation"
   }))
 
   lifecycle {
