@@ -2,40 +2,6 @@
 
 Esta rama integra ePayco en el endpoint `POST /api/checkout`.
 
-## Modo local
-
-Por defecto Docker usa:
-
-```env
-EPAYCO_MOCK=true
-EPAYCO_TEST_MODE=true
-```
-
-Con ese modo la aplicacion no llama a ePayco. Aprueba la transaccion localmente,
-crea la orden, registra una fila en `PaymentTransactions` y limpia el carrito.
-Esto permite validar el flujo de compra sin credenciales ni cuenta validada.
-
-## Modo ePayco test en Docker
-
-Cuando quieras llamar al ambiente de pruebas de ePayco desde Docker local:
-
-1. Crea un archivo `.env` en la raiz del proyecto. Ese archivo esta ignorado por Git.
-
-```env
-EPAYCO_MOCK=false
-EPAYCO_TEST_MODE=true
-EPAYCO_PUBLIC_KEY=TU_PUBLIC_KEY
-EPAYCO_PRIVATE_KEY=TU_PRIVATE_KEY
-EPAYCO_TEST_PRICE_DIVISOR=10
-EPAYCO_TEST_MAX_AMOUNT=200000
-```
-
-2. Reconstruye:
-
-```bash
-docker compose up -d --build
-```
-
 ## Modo ePayco test en AWS con Terraform
 
 Para despliegue en AWS, las claves no se guardan en codigo. Copia:
