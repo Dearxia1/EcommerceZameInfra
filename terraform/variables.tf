@@ -90,3 +90,10 @@ variable "epayco_confirmation_url" {
   description = "Server-to-server ePayco confirmation URL."
   default     = ""
 }
+
+variable "s3_presigned_url" {
+  type        = string
+  description = "Pre-signed URL to download the application bundle directly from S3 without IAM permissions."
+  default     = ""
+}
+

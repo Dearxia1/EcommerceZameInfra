@@ -388,7 +388,7 @@ resource "aws_launch_template" "web_lt" {
   instance_type = var.instance_type
 
   iam_instance_profile {
-    name = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-jv7tNwApGsP8"
+    name = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-bERPZB0p2U6O"
   }
 
   block_device_mappings {
@@ -421,6 +421,7 @@ resource "aws_launch_template" "web_lt" {
     epayco_test_max_amount    = var.epayco_test_max_amount
     epayco_response_url       = var.epayco_response_url != "" ? var.epayco_response_url : "http://${aws_lb.app_alb.dns_name}/checkout.html"
     epayco_confirmation_url   = var.epayco_confirmation_url != "" ? var.epayco_confirmation_url : "http://${aws_lb.app_alb.dns_name}/api/payments/epayco/confirmation"
+    s3_presigned_url          = var.s3_presigned_url
   }))
 
   lifecycle {
@@ -486,7 +487,7 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
   associate_public_ip_address = true
   user_data                   = file("bastion_user_data.sh")
-  iam_instance_profile        = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-jv7tNwApGsP8"
+  iam_instance_profile        = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-bERPZB0p2U6O"
 
   root_block_device {
     volume_size           = 30

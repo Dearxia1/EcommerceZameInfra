@@ -78,6 +78,14 @@ if (-not $DbPass) {
   $DbPass = Get-Value -DotEnv $dotEnv -Name "DB_PASS" -Default "SecurePass123!"
 }
 
+Write-Host "Generating S3 pre-signed URL to bypass AWS Sandbox permissions..."
+$presignedUrl = ""
+try {
+  $presignedUrl = (aws s3 presign s3://zame-scent-assets-daniel-mejia/app-bundle.zip --expires-in 43200).Trim()
+} catch {
+  Write-Warning "Failed to generate pre-signed S3 URL: $_"
+}
+
 $outputDir = Split-Path -Parent $OutputPath
 if ($outputDir -and -not (Test-Path -LiteralPath $outputDir)) {
   New-Item -ItemType Directory -Path $outputDir | Out-Null
@@ -104,6 +112,8 @@ epayco_test_max_amount    = $maxAmount
 
 epayco_response_url     = "$(Escape-HclString $responseUrl)"
 epayco_confirmation_url = "$(Escape-HclString $confirmationUrl)"
+
+s3_presigned_url        = "$(Escape-HclString $presignedUrl)"
 "@
 
 Set-Content -LiteralPath $OutputPath -Value $content

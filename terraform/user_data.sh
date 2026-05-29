@@ -28,10 +28,15 @@ cd $APP_DIR
 # 4. Fetch the application code from S3 bucket
 # The S3 bucket name is passed into this script dynamically via Terraform templatefile()
 BUCKET_NAME="${s3_bucket_name}"
-echo "Downloading application bundle from S3 bucket: $BUCKET_NAME"
+PRESIGNED_URL="${s3_presigned_url}"
 
-# In case S3 download fails, we will write a highly stable fallback local script so the service still starts
-aws s3 cp s3://$BUCKET_NAME/app-bundle.zip ./app-bundle.zip
+if [ -n "$PRESIGNED_URL" ]; then
+    echo "Downloading application bundle from pre-signed S3 URL..."
+    curl -L -o ./app-bundle.zip "$PRESIGNED_URL"
+else
+    echo "Downloading application bundle from S3 bucket: $BUCKET_NAME"
+    aws s3 cp s3://$BUCKET_NAME/app-bundle.zip ./app-bundle.zip
+fi
 
 if [ -f "./app-bundle.zip" ]; then
     echo "App bundle downloaded successfully. Extracting..."
