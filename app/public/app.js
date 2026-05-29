@@ -410,34 +410,60 @@ function renderCheckoutSummary() {
   if (totalDisplay) totalDisplay.textContent = `$${total.toLocaleString('es-CO')} COP`;
 }
 
-// Handle Simulated Checkout Order Submit
+// Handle ePayco Checkout Order Submit
 async function handleCheckout(e) {
   e.preventDefault();
   const submitBtn = document.getElementById('checkout-submit-btn');
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.textContent = 'PROCESANDO PAGO...';
+    submitBtn.textContent = 'PROCESANDO CON EPAYCO...';
   }
 
   const billingName = document.getElementById('billing-name').value;
   const billingAddress = document.getElementById('billing-address').value;
   const billingCity = document.getElementById('billing-city').value;
+  const customerEmail = document.getElementById('customer-email').value;
+  const customerPhone = document.getElementById('customer-phone').value;
+  const docType = document.getElementById('doc-type').value;
+  const docNumber = document.getElementById('doc-number').value;
   const cardNumber = document.getElementById('card-number').value;
+  const cardExpiry = document.getElementById('card-expiry').value;
+  const cardCvc = document.getElementById('card-cvc').value;
+  const dues = document.getElementById('card-dues').value;
 
   try {
     const res = await fetch(API.checkout, {
       method: 'POST',
       headers: getHeaders(),
-      body: JSON.stringify({ billingName, billingAddress, billingCity, cardNumber })
+      body: JSON.stringify({
+        billingName,
+        billingAddress,
+        billingCity,
+        customerEmail,
+        customerPhone,
+        docType,
+        docNumber,
+        cardNumber,
+        cardExpiry,
+        cardCvc,
+        dues
+      })
     });
 
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Error al procesar el pedido');
+    if (!res.ok) {
+      const providerDetail = data.providerMessage ? ` (${data.providerMessage})` : '';
+      throw new Error(`${data.error || 'Error al procesar el pedido'}${providerDetail}`);
+    }
 
     // Show modal success
     document.getElementById('checkout-success-modal').classList.remove('hidden');
     document.getElementById('success-order-id').textContent = data.orderId;
     document.getElementById('success-order-total').textContent = `$${parseFloat(data.total).toLocaleString('es-CO')} COP`;
+    const providerEl = document.getElementById('success-payment-provider');
+    const referenceEl = document.getElementById('success-payment-reference');
+    if (providerEl) providerEl.textContent = data.paymentProvider || 'ePayco';
+    if (referenceEl) referenceEl.textContent = data.providerReference || '-';
     
     // Reset Cart state
     state.cart = [];

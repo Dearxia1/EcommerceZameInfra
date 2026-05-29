@@ -73,6 +73,25 @@ Ejecuta la validación sintáctica de los archivos de configuración (`main.tf`,
 terraform validate
 ```
 
+### 4.2.1 Configurar secretos de ePayco y base de datos
+Antes del despliegue copia el archivo de ejemplo:
+```bash
+cp terraform.tfvars.example terraform.tfvars
+```
+
+Edita `terraform.tfvars` y coloca tus valores reales:
+```hcl
+db_pass = "TU_PASSWORD_RDS"
+
+epayco_mock        = false
+epayco_test_mode   = true
+epayco_public_key  = "TU_PUBLIC_KEY"
+epayco_private_key = "TU_PRIVATE_KEY"
+```
+
+`terraform.tfvars` esta ignorado por Git y no debe subirse al repositorio.
+Terraform inyecta esos valores en el `.env` de las EC2 durante el arranque.
+
 ### 4.3 Fase 1: Crear el Bucket de Almacenamiento S3
 Aprovisiona exclusivamente el bucket S3 dirigiendo el comando de Terraform. Esto evitará levantar cómputo antes de tener cargado el software:
 ```bash

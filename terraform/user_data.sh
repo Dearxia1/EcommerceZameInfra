@@ -345,6 +345,14 @@ DB_PORT=3306
 DB_NAME=${rds_db_name}
 DB_USER=${rds_db_user}
 DB_PASS=${rds_db_pass}
+EPAYCO_MOCK=${epayco_mock}
+EPAYCO_TEST_MODE=${epayco_test_mode}
+EPAYCO_PUBLIC_KEY=${epayco_public_key}
+EPAYCO_PRIVATE_KEY=${epayco_private_key}
+EPAYCO_TEST_PRICE_DIVISOR=${epayco_test_price_divisor}
+EPAYCO_TEST_MAX_AMOUNT=${epayco_test_max_amount}
+EPAYCO_RESPONSE_URL=${epayco_response_url}
+EPAYCO_CONFIRMATION_URL=${epayco_confirmation_url}
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 EOF
 
