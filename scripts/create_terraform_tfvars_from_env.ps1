@@ -81,7 +81,7 @@ if (-not $DbPass) {
 Write-Host "Generating S3 pre-signed URL to bypass AWS Sandbox permissions..."
 $presignedUrl = ""
 try {
-  $presignedUrl = (aws s3 presign s3://zame-scent-assets-daniel-mejia/app-bundle.zip --expires-in 43200).Trim()
+  $presignedUrl = (aws s3 presign s3://zame-scent-assets-daniel-mejia-v2/app-bundle.zip --expires-in 43200).Trim()
 } catch {
   Write-Warning "Failed to generate pre-signed S3 URL: $_"
 }

@@ -301,7 +301,7 @@ resource "aws_db_instance" "rds_db" {
 
 # LOCAL VARIABLES FOR SANDBOX BYPASS (S3 is managed via CLI to avoid GetBucketObjectLockConfiguration errors)
 locals {
-  s3_bucket_name = "zame-scent-assets-daniel-mejia" # Change this to any globally unique S3 bucket name
+  s3_bucket_name = "zame-scent-assets-daniel-mejia-v2" # Change this to any globally unique S3 bucket name
 }
 
 # The aws_s3_bucket resource is created manually via the AWS CLI to bypass restricted Vocareum Sandbox permissions.
@@ -388,7 +388,7 @@ resource "aws_launch_template" "web_lt" {
   instance_type = var.instance_type
 
   iam_instance_profile {
-    name = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-bERPZB0p2U6O"
+    name = "c203071a5182623l15249430t1w375573133880-SsmRoleInstanceProfile-l8WlyA0kx8oX"
   }
 
   block_device_mappings {
@@ -487,7 +487,7 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
   associate_public_ip_address = true
   user_data                   = file("bastion_user_data.sh")
-  iam_instance_profile        = "c203071a5182623l15249430t1w157180434611-SsmRoleInstanceProfile-bERPZB0p2U6O"
+  iam_instance_profile        = "c203071a5182623l15249430t1w375573133880-SsmRoleInstanceProfile-l8WlyA0kx8oX"
 
   root_block_device {
     volume_size           = 30
