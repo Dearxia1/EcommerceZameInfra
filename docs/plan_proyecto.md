@@ -3,7 +3,7 @@
 **Curso:** Infraestructura III  
 **Docente:** Ing. Mario German Castillo Ramirez  
 **Institución:** Facultad de Ingeniería, Departamento de Tecnologías de Información y Comunicaciones  
-**Estudiante / Startup Developer:** Daniel  
+**Estudiante / Startup Developer:** Daniel y carlos
 
 ---
 
